@@ -1,0 +1,22 @@
+%p#notice= notice
+
+%p
+	%b Name:
+	= @product.name
+%p
+	%b Price in dollar:
+	= number_to_currency @product.price_in_cents.to_d/100
+%p
+	%b Release at:
+	= @product.released_at.try(:strftime, "%B %e, %Y at %I:%M:%S %p")
+%p
+	%b Category:
+	= @product.category.name
+
+%p
+	%b Tags: 
+	= @product.tags.map(&:name).join(", ")
+
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to 'Back', products_path
